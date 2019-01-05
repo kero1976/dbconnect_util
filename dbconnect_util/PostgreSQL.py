@@ -18,5 +18,5 @@ class PostgreSQL(DBConnectBase):
         conn = psycopg2.connect(dsn)
         self._con = conn
 
-    def table_list(self):
-        self.select("select relname as TABLE_NAME from pg_stat_user_tables")
+    def table_list_sql(self):
+        return "select relname as TABLE_NAME from pg_stat_user_tables"

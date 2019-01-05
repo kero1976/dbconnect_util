@@ -17,5 +17,8 @@ class DBManager(object):
     def select(self, sql):
         self._db.select(sql)
 
-    def table_list(self):
-        self._db.table_list()
+    def table_list(self, output=True):
+        return self._db.table_list(output)
+
+    def table_count(self, tables, output=True):
+        return self._db.table_count(tables, output)

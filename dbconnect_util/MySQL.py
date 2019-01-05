@@ -15,5 +15,5 @@ class MySQL(DBConnectBase):
             db = db)
         self._con = conn
 
-    def table_list(self):
-        self.select("show tables")
+    def table_list_sql(self):
+        return "show tables"
