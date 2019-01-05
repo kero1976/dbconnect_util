@@ -1,15 +1,16 @@
 from dbconnect_util import DBManager
+from dbconnect_util import View
 
 print("START")
-db = DBManager.DBManager("PostgreSQL")
+db = DBManager.DBManager("MySQL")
 db.connect("kero", "k0bayasi", "localhost", "testdb")
 
+db.insert()
 
-list = db.table_list()
+list = db.table_list(False)
+#db.delete_tables(list)
 print("=========================")
 list2 = db.table_count(list, False)
-list2.sort(key=lambda x:x[1], reverse=True)
-for table in list2:
-    print("{},{}".format(table[0], table[1]))
+View.table_count_view(list2)
 
 print('END')

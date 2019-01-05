@@ -3,6 +3,20 @@ from dbconnect_util import MySQL
 from dbconnect_util import PostgreSQL
 
 class DBManager(object):
+    """
+    使い方:
+        1.引数に"MySQL" or "PostgreSQL"を渡してインスタンスを作成する
+            dbm = DBManager("MySQL")
+        2.ユーザ名、パスワード、ホスト名、DB名を渡してコネクションを張る
+            dbm.connect("user", "pass", "localhost", "test_db")
+        3-1.テーブルの一覧取得
+            table_list = dbm.table_list()
+        3-2.テーブルの件数取得
+            table_count_list = dbm.table_count(table_list)
+        3-3.テーブルのデータ削除(全件)
+            dbm.delete_tables(table_list)
+        
+    """
     def __init__(self, db_type):
         if db_type == "MySQL":
             self._db = MySQL.MySQL()
@@ -22,3 +36,9 @@ class DBManager(object):
 
     def table_count(self, tables, output=True):
         return self._db.table_count(tables, output)
+
+    def insert(self):
+        self._db.insert()
+
+    def delete_tables(self, tables):
+        self._db.delete_tables(tables)

@@ -24,11 +24,24 @@ class DBConnectBase(object):
         cursor.close()
         return list
 
+    def insert(self):
+        cursor = self._con.cursor()
+        for i in range(1000):
+            cursor.execute("insert into test2 values ({}, 'A')".format(i))
+        self._con.commit()
+        cursor.close()
+
+    def delete_tables(self, tables):
+        cursor = self._con.cursor()
+        for table in tables:
+            cursor.execute("delete from {}".format(table))
+        self._con.commit()
+        cursor.close()
+
     def table_list(self, output=True):
-        tmplist = self.select(self.table_list_sql(), output)
         result = []
         # リストの要素がタプルになっているので、タプルを外して返す
-        for tmp in tmplist:
+        for tmp in self.select(self.table_list_sql(), output):
             result.append(tmp[0])
         return result
 
