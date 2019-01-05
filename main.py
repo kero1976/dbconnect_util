@@ -1,8 +1,9 @@
 from dbconnect_util import DBManager
 
-print("TEST3")
-db = DBManager.DBManager("PostgreSQL")
+print("START")
+db = DBManager.DBManager("MySQL")
 db.connect("kero", "k0bayasi", "localhost", "testdb")
-#conn = db.connect("testuser", "testpassword", "localhost", "testdb")
-db.select()
+
+
+db.table_list()
 print('END')

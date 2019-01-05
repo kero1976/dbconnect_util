@@ -14,5 +14,8 @@ class DBManager(object):
     def connect(self, user, password, host, dbname):
         self._con = self._db.connect( user, password, host, dbname)
 
-    def select(self):
-        self._db.select(self._con)
+    def select(self, sql):
+        self._db.select(sql)
+
+    def table_list(self):
+        self._db.table_list()

@@ -16,10 +16,7 @@ class PostgreSQL(DBConnectBase):
             database
         )
         conn = psycopg2.connect(dsn)
-        return conn
+        self._con = conn
 
-    def select(self, conn):
-        cursor = conn.cursor()
-        cursor.execute('SELECT * from test_table')
-        for row in cursor:
-            print(row)
+    def table_list(self):
+        self.select("select relname as TABLE_NAME from pg_stat_user_tables")

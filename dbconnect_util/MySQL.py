@@ -13,10 +13,7 @@ class MySQL(DBConnectBase):
             user = username,
             passwd = password,
             db = db)
-        return conn
+        self._con = conn
 
-    def select(self, conn):
-        cursor = conn.cursor()
-        cursor.execute('SELECT * from test_table')
-        for row in cursor:
-            print(row)
+    def table_list(self):
+        self.select("show tables")
