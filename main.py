@@ -5,12 +5,11 @@ print("START")
 db = DBManager.DBManager("MySQL")
 db.connect("kero", "k0bayasi", "localhost", "testdb")
 
-db.insert()
 
-list = db.table_list(False)
+list = db.connection_list()
+
 #db.delete_tables(list)
 print("=========================")
-list2 = db.table_count(list, False)
-View.table_count_view(list2)
+
 
 print('END')

@@ -17,3 +17,6 @@ class MySQL(DBConnectBase):
 
     def table_list_sql(self):
         return "show tables"
+
+    def connection_list_sql(self):
+        return "show processlist"

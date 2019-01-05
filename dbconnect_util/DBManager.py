@@ -15,7 +15,7 @@ class DBManager(object):
             table_count_list = dbm.table_count(table_list)
         3-3.テーブルのデータ削除(全件)
             dbm.delete_tables(table_list)
-        
+
     """
     def __init__(self, db_type):
         if db_type == "MySQL":
@@ -42,3 +42,9 @@ class DBManager(object):
 
     def delete_tables(self, tables):
         self._db.delete_tables(tables)
+
+    def connection_list(self, output=True):
+        return self._db.connection_list(output)
+
+    def show_table_column(self, table, output=True):
+        return self._db.show_table_column(table, output)

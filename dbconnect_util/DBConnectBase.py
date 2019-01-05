@@ -14,6 +14,7 @@ class DBConnectBase(object):
         pass
 
     def select(self, sql, output=True):
+        print(sql)
         cursor = self._con.cursor()
         cursor.execute(sql)
         list = []
@@ -51,3 +52,9 @@ class DBConnectBase(object):
             result.append(
                 self.select("select '{0}', count(*) from {0}".format(table), output)[0])
         return result
+
+    def connection_list(self, output=True):
+        return self.select(self.connection_list_sql(), output)
+
+    def show_table_column(self, table, output=True):
+        return self.select(self.show_table_column_sql(table), output)
