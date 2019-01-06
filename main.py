@@ -5,8 +5,8 @@ print("START")
 db = DBManager.DBManager("PostgreSQL")
 db.connect("kero", "k0bayasi", "localhost", "testdb")
 
-db.copy_table("test2")
-
+#db.copy_table("test2")
+db.diff_table("test2")
 View.table_count_view(db.table_count(db.table_list(False)))
 
 

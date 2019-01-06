@@ -53,3 +53,6 @@ class DBManager(object):
 
     def copy_table(self, tables):
         self._db.copy_table(tables)
+
+    def diff_table(self, tables):
+        self._db.diff_table(tables)

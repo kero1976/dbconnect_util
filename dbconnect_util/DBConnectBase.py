@@ -72,3 +72,15 @@ class DBConnectBase(object):
         cursor.execute(self.table_copy_sql(table))
         self._con.commit()
         cursor.close()
+
+    def diff_table(self, table):
+        sql_org = "select * from {}".format(table)
+        sql_copy = "select * from {}{}".format(table, self._TABLE_COPY_PREFIX)
+        org_list = set(self.select(sql_org, False))
+        copy_list = set(self.select(sql_copy, False))
+        print("■元テーブルのみに存在")
+        print(org_list - copy_list)
+        print("■コピーテーブルのみに存在")
+        print(copy_list - org_list)
+        print("■差")
+        print(org_list ^ copy_list)
