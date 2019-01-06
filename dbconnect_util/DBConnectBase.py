@@ -1,6 +1,6 @@
 class DBConnectBase(object):
     def __init__(self):
-        print('db init')
+        self._TABLE_COPY_PREFIX = "COPY"
 
     def connect(self, user, password, host, dbname):
         """
@@ -14,7 +14,6 @@ class DBConnectBase(object):
         pass
 
     def select(self, sql, output=True):
-        print(sql)
         cursor = self._con.cursor()
         cursor.execute(sql)
         list = []
@@ -58,3 +57,18 @@ class DBConnectBase(object):
 
     def show_table_column(self, table, output=True):
         return self.select(self.show_table_column_sql(table), output)
+
+    def copy_table(self, table):
+        """
+        テーブルのコピー。既にコピーテーブルがある場合はエラーにする。
+        テーブル名の大文字・小文字は無視する。
+        :param table:
+        :return:
+        """
+        cursor = self._con.cursor()
+        table_list = self.table_list(False);
+        if "{}{}".format(table, self._TABLE_COPY_PREFIX).upper() in [s.upper() for s in table_list]:
+            raise ValueError("既にコピーテーブルが存在するテーブルです({})".format(table))
+        cursor.execute(self.table_copy_sql(table))
+        self._con.commit()
+        cursor.close()

@@ -20,3 +20,7 @@ class MySQL(DBConnectBase):
 
     def connection_list_sql(self):
         return "show processlist"
+
+    def table_copy_sql(self, table):
+        sql = "create table {0}{1} select * from {0}".format(table, self._TABLE_COPY_PREFIX)
+        return sql

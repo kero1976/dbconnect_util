@@ -15,6 +15,8 @@ class DBManager(object):
             table_count_list = dbm.table_count(table_list)
         3-3.テーブルのデータ削除(全件)
             dbm.delete_tables(table_list)
+        3-4.テーブルのコピー作成
+            db.copy_table(table)
 
     """
     def __init__(self, db_type):
@@ -48,3 +50,6 @@ class DBManager(object):
 
     def show_table_column(self, table, output=True):
         return self._db.show_table_column(table, output)
+
+    def copy_table(self, tables):
+        self._db.copy_table(tables)

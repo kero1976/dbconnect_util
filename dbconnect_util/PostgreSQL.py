@@ -44,3 +44,7 @@ where \
  table_name = '{}' \
 order by ordinal_position """.format(table)
         return sql
+
+    def table_copy_sql(self, table):
+        sql = "create table {0}{1} as select * from {0}".format(table, self._TABLE_COPY_PREFIX)
+        return sql

@@ -2,13 +2,14 @@ from dbconnect_util import DBManager
 from dbconnect_util import View
 
 print("START")
-db = DBManager.DBManager("MySQL")
+db = DBManager.DBManager("PostgreSQL")
 db.connect("kero", "k0bayasi", "localhost", "testdb")
 
+db.copy_table("test2")
 
-list = db.connection_list()
+View.table_count_view(db.table_count(db.table_list(False)))
 
-#db.delete_tables(list)
+
 print("=========================")
 
 
