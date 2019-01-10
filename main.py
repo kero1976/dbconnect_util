@@ -1,15 +1,12 @@
 from dbconnect_util import DBManager
 from dbconnect_util import View
+import xml_analysis.InstallationObjects
 
 print("START")
-db = DBManager.DBManager("PostgreSQL")
-db.connect("kero", "k0bayasi", "localhost", "testdb")
 
-#db.copy_table("test2")
-db.diff_table("test2")
-View.table_count_view(db.table_count(db.table_list(False)))
-
-
+xml = xml_analysis.InstallationObjects.InstallationObjects("Test_Linux.iap_xml")
+xml.getMultipleVariables()
+xml.getVariableList()
 print("=========================")
 
 
